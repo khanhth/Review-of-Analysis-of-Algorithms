@@ -27,9 +27,9 @@ public class QuickUnion {
     System.out.printf("\n[union] %d and %d are now connected\n", p, q);
   }
 
-  public boolean Find(int p, int q) {
+  public boolean connected(int p, int q) {
     boolean out = root(p) == root(q);
-    System.out.printf("[find] Are %d and %d connected? %b\n", p, q, out);
+    System.out.printf("[connected] Are %d and %d connected? %b\n", p, q, out);
 
     return out;
   }
@@ -39,28 +39,28 @@ public class QuickUnion {
     int i = 1, j = 2;
 
     map.union(i, j);
-    map.Find(i, j);
+    map.connected(i, j);
 
     j= 3;
-    map.Find(i, j);
+    map.connected(i, j);
 
     i = 2;
-    map.Find(i, j);
+    map.connected(i, j);
 
     map.union(i, j);
 
-    map.Find(i, j);
+    map.connected(i, j);
 
     j = 1;
-    map.Find(i, j);
+    map.connected(i, j);
 
     i = 3;
-    map.Find(i, j);
+    map.connected(i, j);
   
     i = 5;
-    map.Find(i, j);
+    map.connected(i, j);
 
     i = 8; j = 9;
-    map.Find(i, j);
+    map.connected(i, j);
   }
 }
