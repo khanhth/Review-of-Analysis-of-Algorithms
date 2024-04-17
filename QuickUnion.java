@@ -19,9 +19,10 @@ public class QuickUnion {
   }
 
   public void union(int p, int q) {
-    if (!connected(p, q)) {
-      id[root(p)] = root(q);
-    }
+    // if (!connected(p, q)) {
+    //  id[root(p)] = root(q);
+    //}
+    id[root(p)] = root(q);
   }
 
   public boolean connected(int p, int q) {
