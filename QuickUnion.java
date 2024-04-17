@@ -8,8 +8,14 @@ public class QuickUnion {
     for (int i = 0; i < N; i++) id[i] = i; 
   }
 
+//  public int root(int p) {
+//    return id[p]==p ? p : root(id[p]);
+//  }
+
   public int root(int p) {
-    return id[p]==p ? p : root(id[p]);
+    while (p != id[p]) p = id[p];
+
+    return p;
   }
 
   public void union(int p, int q) {
@@ -49,6 +55,9 @@ public class QuickUnion {
     System.out.printf("[Find] Are %d and %d connected? %b\n", i, j, site.connected(i, j));
   
     i = 5;
+    System.out.printf("[Find] Are %d and %d connected? %b\n", i, j, site.connected(i, j));
+
+    i = 8; j = 9;
     System.out.printf("[Find] Are %d and %d connected? %b\n", i, j, site.connected(i, j));
   }
 }
