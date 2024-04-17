@@ -15,44 +15,44 @@ public class QuickFind {
       }
     }
 
-    System.out.printf("\n[Union] %d and %d are now connected\n", p, q);
+    System.out.printf("\n[union] %d and %d are now connected\n", p, q);
   }
 
   public boolean Find(int p, int q) {
     
     boolean out = id[p] == id[q];
-    System.out.printf("[Find] Are %d and %d connected? %b\n", p, q, out);
+    System.out.printf("[find] Are %d and %d connected? %b\n", p, q, out);
 
     return out;
   }
 
   public static void main(String[] args) {
-    QuickFind site=new QuickFind(10);
+    QuickFind map=new QuickFind(10);
     int i = 1, j = 2;
 
-    site.union(i, j);
+    map.union(i, j);
 
-    site.Find(i, j);
+    map.Find(i, j);
 
     j= 3;
-    site.Find(i, j);
+    map.Find(i, j);
 
     i = 2;
-    site.Find(i, j);
+    map.Find(i, j);
 
-    site.union(i, j);
-    site.Find(i, j);
+    map.union(i, j);
+    map.Find(i, j);
 
     j = 1;
-    site.Find(i, j);
+    map.Find(i, j);
 
     i = 3;
-    site.Find(i, j);
+    map.Find(i, j);
   
     i = 5;
-    site.Find(i, j);
+    map.Find(i, j);
 
     i = 8; j = 9;
-    site.Find(i, j);
+    map.Find(i, j);
   }
 }
