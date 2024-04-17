@@ -17,7 +17,12 @@ public class QuickUnion_Weighted_1 {
   }
 
   public int root(int p) {
-    while (p != id[p]) p = id[p];
+    while (p != id[p]) {
+//      System.out.printf("[root]*** id, p, id[p], id[id[p]]: %s, %s, %s, %s\n", Arrays.toString(id), p, id[p], id[id[p]]);
+      id[p] = id[id[p]]; // Gradually flatten out the tree, the tree MAY NOT completely flat
+      p = id[p];
+    }
+//    System.out.printf("[root] id: %s\n", Arrays.toString(id));
 
     return p;
   }
@@ -26,7 +31,7 @@ public class QuickUnion_Weighted_1 {
     int r_p = root(p);
     int r_q= root(q);
 
-    if (r_p == r_q) {return;}
+    if (r_p == r_q) return;
 
     if (sizes[r_p] >= sizes[r_q]) {
       id[r_q] = r_p;
@@ -38,8 +43,8 @@ public class QuickUnion_Weighted_1 {
       sizes[r_p] = 0;
     }
 
-    System.out.printf("\n[union] %s \n", Arrays.toString(sizes));
-    System.out.printf("[union] %d and %d are now connected\n", p, q);
+    System.out.printf("\n[union] %d and %d are now connected\n", p, q);
+    System.out.printf("[union] sizes: %s \n", Arrays.toString(sizes));
   }
 
   public boolean Find(int p, int q) {
@@ -50,47 +55,62 @@ public class QuickUnion_Weighted_1 {
   }
 
   public static void main(String[] args) {
-    QuickUnion_Weighted_1 map=new QuickUnion_Weighted_1(10);
+    QuickUnion_Weighted_1 map=new QuickUnion_Weighted_1(12);
     int i = 1, j = 2;
 
     map.union(i, j);
-    map.Find(i, j);
+//    map.Find(i, j);
 
     j= 3;
-    map.Find(i, j);
+//    map.Find(i, j);
 
     i = 2;
-    map.Find(i, j);
+//    map.Find(i, j);
 
     map.union(i, j);
-    map.Find(i, j);
+//    map.Find(i, j);
 
     j = 1;
-    map.Find(i, j);
+//    map.Find(i, j);
 
     i = 3;
-    map.Find(i, j);
+//    map.Find(i, j);
   
     i = 5;
-    map.Find(i, j);
+//    map.Find(i, j);
 
-    i = 8; j = 9;
-    map.Find(i, j);
+//    i = 8; j = 9;
+//    map.Find(i, j);
 
     i = 7; j=8;
     map.union(i, j);
-    map.Find(i, j);
 
     i = 9; j=7;
     map.union(i, j);
-    map.Find(i, j);
 
-    i = 6; j=8;
+    i = 4; j=6;
     map.union(i, j);
-    map.Find(i, j);
 
-    i = 2; j=8;
+    i = 5; j=6;
     map.union(i, j);
-    map.Find(i, j);
+
+    i = 5; j=2;
+    map.union(i, j);
+//    map.Find(i, j);
+//    map.Find(3, 8);
+
+    i = 0; j = 10;
+    map.union(i, j);
+
+    i = 10; j = 11;
+    map.union(i, j);
+    i = 7; j = 10;
+    map.union(i, j);
+
+    System.out.printf("[main] id: %s\n", Arrays.toString(map.id));
+    map.union(7, 4);
+    System.out.printf("[main] id: %s\n", Arrays.toString(map.id));
+    System.out.printf("[main] root of 10: %d\n", map.root(10));
+    System.out.printf("[main] root of 11: %d\n", map.root(11));
   }
 }
