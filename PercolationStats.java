@@ -1,14 +1,12 @@
 import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdStats;
 
-import java.util.Arrays;
-
 public class PercolationStats {
-    private final double[] props;
-    private final double z = 1.96;
+    private double[] props;
+    private double z = 1.96;
 
     // perform independent trials on an n-by-n grid
-    public PercolationStats(final int n, final int trials) {
+    public PercolationStats(int n, int trials) {
         props = new double[trials];
 
         for (int i = 0; i < trials; i++) {
@@ -33,20 +31,20 @@ public class PercolationStats {
             props[i] = totalOpen / (n * n);
         }
 
-        System.out.printf("props: %s\n", Arrays.toString(props));
-        System.out.printf("mean: %f\n", mean());
-        System.out.printf("stddev: %f\n", stddev());
-        System.out.printf("confidenceLo: %f\n", confidenceLo());
-        System.out.printf("confidenceHi: %f\n", confidenceHi());
+//        System.out.printf("props: %s\n", Arrays.toString(props));
+//        System.out.printf("mean: %f\n", mean());
+//        System.out.printf("stddev: %f\n", stddev());
+//        System.out.printf("confidenceLo: %f\n", confidenceLo());
+//        System.out.printf("confidenceHi: %f\n", confidenceHi());
     }
 
     // test client (see below)
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         if (args.length < 2) {
             throw new IllegalArgumentException("n and T are required!");
         }
 
-        PercolationStats percolationStats = new PercolationStats(
+        new PercolationStats(
                 Integer.parseInt(args[0]), Integer.parseInt(args[1]));
     }
 

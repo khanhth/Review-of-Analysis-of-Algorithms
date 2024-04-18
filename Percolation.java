@@ -1,9 +1,7 @@
-import java.util.Arrays;
-
 public class Percolation {
-    private final int[] ids;
-    private final int[] weights;
-    private final int n;
+    private int[] ids;
+    private int[] weights;
+    private int n;
     private int numberOfOpenSites = 0;
     // creates n-by-n grid, with all ids initially blocked
     public Percolation(int n) {
@@ -27,7 +25,7 @@ public class Percolation {
         weights[n * n + 1] = 1;
     }
 
-    public int[] adjacentSites(final int row, final int col) {
+    private int[] adjacentSites(int row, int col) {
         validateRolCol(row, col);
 
         int[] out = {-1, -1, -1, -1};
@@ -109,15 +107,15 @@ public class Percolation {
 //        System.out.printf("\n\n[union] (%d, %d) are CONNECTED!\n", p, q);
     }
 
-    public int root(final int i) {
-        while(i != ids[i]) {
+    private int root(int i) {
+        while (i != ids[i]) {
             i = ids[i];
         }
 
         return i;
     }
 
-    public void validateRolCol(final int row, final int col) {
+    private void validateRolCol(int row, int col) {
         if (row < 0 || row > (n + 1) || col < 0 || col > n) {
             throw new IllegalArgumentException("Either row or col or both is"
                     + " not valid");
@@ -125,7 +123,7 @@ public class Percolation {
     }
 
     // is the site (row, col) open?
-    public boolean isOpen(final int row, final int col) {
+    public boolean isOpen(int row, int col) {
         validateRolCol(row, col);
 
         if ((row == 0) || (row  == n + 1)) {
@@ -136,7 +134,7 @@ public class Percolation {
     }
 
     // is the site (row, col) full?
-    public boolean isFull(final int row, final int col) {
+    public boolean isFull(int row, int col) {
         return connected((row - 1) * n + col, 0);
     }
 
@@ -145,13 +143,13 @@ public class Percolation {
         return numberOfOpenSites;
     }
 
-    public boolean connected(final int p, final int q) {
+    private boolean connected(int p, int q) {
         boolean out = false;
         int pRow = (p - 1) / n + 1;
         int pCol = p - (pRow - 1) * n;
         int qRow = (q - 1) / n + 1;
         int qCol = q - (qRow - 1) * n;
-        if (isOpen(pRow, pCol) & isOpen(qRow, qCol)) {
+        if (isOpen(pRow, pCol) && isOpen(qRow, qCol)) {
             out = root(p) == root(q);
         }
 
@@ -163,7 +161,7 @@ public class Percolation {
         return connected(n * n + 1, 0);
     }
 
-    public void openSites() {
+    private void openSites() {
 //        System.out.printf("[openSites] Open site(s): 0, ");
         for (int i = 1; i < n * n + 1; i++) {
             if (ids[i] != -1) {
@@ -175,7 +173,7 @@ public class Percolation {
     }
 
     // test client (optional)
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         Percolation perc = new Percolation(3);
         perc.openSites();
     }
