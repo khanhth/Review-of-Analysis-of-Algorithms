@@ -3,3 +3,5 @@
 .idea
 *.iml
 out/
+algs4.jar
+/inputs
