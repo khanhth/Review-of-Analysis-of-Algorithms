@@ -70,7 +70,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         return new ReverseArrayIterator(items);
     }
 
-    public class ReverseArrayIterator implements Iterator<Item> {
+    private class ReverseArrayIterator implements Iterator<Item> {
         private int i;
         private Item[] items;
 
