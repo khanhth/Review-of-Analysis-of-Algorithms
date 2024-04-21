@@ -6,13 +6,26 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     private Item[] items;
     private int size;
-    private int capacity;
+    private int capacity = 1;
+
     // construct an empty randomized queue
-    public RandomizedQueue(int capacity) {
-        this.capacity = capacity;
+    public RandomizedQueue() {
 //        System.out.printf("capacity: %d\n", capacity);
         items = (Item[]) new Object[capacity];
         size = 0;
+    }
+
+    private void resize(int capacity) {
+//        System.out.printf("[resize] from %d to %d\n", size, capacity);
+        this.capacity = capacity;
+        Item[] copy = (Item[]) new Object[capacity];
+
+        int i = 0;
+        for (Item item: items) {
+            if (item != null) copy[i++] = item;
+        }
+
+        items = copy;
     }
 
     // is the randomized queue empty?
@@ -29,6 +42,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     public void enqueue(Item item) {
 //        System.out.printf("items: %s\n", Arrays.toString(items));
         items[size++] = item;
+        if (size == capacity) resize(size*2);
     }
 
     // remove and return a random item
@@ -42,6 +56,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         Item item = items[i];
         items[i] = null;
         size--;
+        if (size > 0 && size == capacity/4) resize(capacity/2);
         return item;
     }
 
@@ -84,18 +99,35 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
 
     // unit testing (required)
     public static void main(String[] args) {
-        RandomizedQueue<String> q = new RandomizedQueue<>(5);
+        RandomizedQueue<String> q = new RandomizedQueue<>();
         q.enqueue("test");
         q.enqueue("some");
         q.enqueue("awesome");
         q.enqueue("string");
         q.enqueue("!");
+        q.enqueue("1");
+        q.enqueue("2");
+        q.enqueue("3");
+        q.enqueue("4");
+        q.enqueue("5");
+        q.enqueue("6");
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
+        q.dequeue();
         q.dequeue();
         q.dequeue();
         for (String s: q) {
             System.out.printf("*** s is: %s\n", s);
         }
-        System.out.println("-------");
+        System.out.println("[-------]");
+        for (String s: q) {
+            System.out.printf("*** s is: %s\n", s);
+        }
+        System.out.println("[-------]");
         for (String s: q) {
             System.out.printf("*** s is: %s\n", s);
         }

@@ -1,5 +1,4 @@
 import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
 
 public class Permutation {
     public static void main(String[] args) {
@@ -9,7 +8,7 @@ public class Permutation {
 
         int max = Integer.parseInt(args[0]);
 
-        RandomizedQueue<String> q = new RandomizedQueue<>(100);
+        RandomizedQueue<String> q = new RandomizedQueue<>();
 
         StringBuilder word = new StringBuilder();
         while (StdIn.hasNextChar()) {
@@ -30,10 +29,10 @@ public class Permutation {
 
             word.append(c);
         }
-
-        q.dequeue();
-        q.dequeue();
-        q.dequeue();
+//
+//        q.dequeue();
+//        q.dequeue();
+//        q.dequeue();
 
         int i = 0;
         for (String s: q) {
