@@ -1,5 +1,23 @@
+## Elementary Sorts
+*Cost model.* Number of array accesses & exchanges (i.e. swaps).
+
+| Algorithm | No. of Array Accesses | No. of Exchanges |
+| --- | --- | --- |
+| Selection Sort | - | - |
+| Best case | $N^2/2$ | $0$ (Or $N$^{\dagger}$) |
+| Average case | $N^2/2$ | $\sim N$ |
+| Worst case | $N^2/2$ | $N$ |
+| Insertion Sort | - | - |
+| Best case | $N - 1$ | $0$ (Or $N$^{\dagger}$) |
+| Average case | $\sim N^2/4$ | $\sim N^2/4$ |
+| Worst case | $\sim N^2/2$ | $\sim N^2/2$ |
+
+${\dagger}$ Exact number depending on implementation.
 ## Quick-find vs. Quick-union
 *Cost model.* Number of operations counting only number of array accesses but not other operations such as counter variable initializations & assignments in loops.
+
+The table below needs review on the usage of $\sim$ notation.
+
 | Algorithm | Initialization | Union | Find |
 | --- | --- | --- | --- |
 | Quick Find (All Cases) | $N$ | $N$ | $1$ |
