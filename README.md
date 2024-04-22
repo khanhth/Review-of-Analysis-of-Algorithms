@@ -4,7 +4,7 @@
 | Algorithm          | No. of Array Accesses | No. of Exchanges       |
 |--------------------|-----------------------|------------------------|
 | **Selection Sort** |                       |                        |
-| Best case          | $N^2/2$               | $0$ (Or $N$^{\dagger}$) |
+| Best case          | $N^2/2$               | $0$ (Or $N^{\dagger}$) |
 | Average case       | $N^2/2$               | $\sim N$               |
 | Worst case         | $N^2/2$               | $N$                    |
 | **Insertion Sort** |                       |                        |
