@@ -3,72 +3,35 @@ import edu.princeton.cs.algs4.StdRandom;
 import java.util.Arrays;
 
 public class SelectionSort {
-    private class Analyzer {
-        int N;
-        int exchanges;
-        int compares;
-        boolean sorted;
-        int ops() {
-            return exchanges + compares;
-        }
-        float relativeChange(int type) {
-            float r;
-            switch (type) {
-                case 1:
-                    r = (float) compares / (N*N);
-                    break;
-                case 2:
-                    r = (float) exchanges / N;
-                    break;
-                default:
-                    r = (float) ops() / (N*N);
-                    break;
-            }
-
-            return r;
-        }
-    }
-
-    public void analyze() {
-        int n = analyzer.N;
-        if (n == 0) System.out.println("Sorting's not been started.");
-        else System.out.printf("[%s] N: %d, N^2: %d, ops: %d\n" +
-                        "\trel. change: (total) %f [Exp. ~1/2]" +
-                        "\t(comp.): %f [Exp. ~1/2]" +
-                        "\t(exch.): %f [Exp. ~1]\n",
-                analyzer.sorted ? "-" : "+", n, n*n, analyzer.ops(),
-                analyzer.relativeChange(0),
-                analyzer.relativeChange(1),
-                analyzer.relativeChange(2));
-    }
-
-    public Analyzer analyzer;
+    private SortAnalyzer analyzer;
+    private boolean sorted;
+    private Comparable[] items;
+    private int inputType; // 0: best, 2: worst
 
     public SelectionSort() {
     }
 
-    public void sort(Comparable[] items, boolean sorted) {
-        analyzer = new Analyzer();
-        analyzer.N = items.length;
-        analyzer.sorted = sorted;
-
-//        System.out.printf("Sorted: %b\n", sorted);
+    public void sort(Comparable[] items, int type) {
+        analyzer = new SortAnalyzer();
+        this.items = items;
+        inputType = type;
 
         for (int i = 0; i < items.length - 1; i++) {
             int currentMin = i + 1;
             for (int j = i + 2; j < items.length; j++) {
-                analyzer.compares = analyzer.compares + 1; // compare op
+                analyzer.compare(); // compare op
                 if (items[j].compareTo(items[currentMin]) < 0) {
                     currentMin = j;
                 }
             }
 
-            analyzer.compares = analyzer.compares + 1; // compare op
+            analyzer.compare(); // compare op
             if (items[i].compareTo(items[currentMin]) > 0) {
-                analyzer.exchanges = analyzer.exchanges + 1; // exchange op
+                analyzer.exchange(); // exchange op
                 exch(items, i, currentMin);
             }
         }
+        sorted = true;
     }
 
     public void exch(Comparable[] items, int i, int j) {
@@ -77,41 +40,106 @@ public class SelectionSort {
         items[j] = tmp;
     }
 
+    public void resort() {
+        if (!sorted) {
+            throw new UnsupportedOperationException("Can only call resort() after items have been sorted.");
+        }
+        analyzer.refresh();
+        sort(items, 0);
+    }
+
+    public float growthConstant(int statType) {
+        float r;
+        int N = items.length;
+        switch (statType) {
+            case 1: // compares
+                r = (float) analyzer.getCompares() / (N*N);
+                break;
+            case 2: // exchanges
+                r = (float) analyzer.getExchanges() / N;
+                break;
+            default: // total
+                r = (float) analyzer.ops() / (N*N);
+                break;
+        }
+
+        return r;
+    }
+
+    private void analyze() {
+        if (!sorted) System.out.println("[!] items have NOT been sorted.");
+        String[] exps;;
+        String caseName;
+        switch (inputType) {
+            case 0:
+                caseName = "[BEST] Compares = N^2 | Exchanges = 0 (Or N)";
+                exps = new String[]{"1/2", "1/2", "0"};
+                break;
+            case 2:
+                caseName = "[WORST] Compares = N^2 | Exchanges = N";
+                exps = new String[]{"1/2", "1/2", "1"};
+                break;
+            default: // random
+                caseName = "[RAND] Compares = N^2 | Exchanges / N";
+                exps = new String[]{"1/2", "1/2", "< 1"};
+                break;
+        }
+
+        int N = items.length;
+        System.out.printf("[*] N: %d, N^2: %d, ops: %d\n" +
+                        "\t%s\n\tTotal: %f [Exp. %s]" +
+                        "\tcomp.: %f [Exp. %s]" +
+                        "\texch.: %f [Exp. %s]\n\n",
+                N, N*N, analyzer.ops(), caseName,
+                growthConstant(0), exps[0],
+                growthConstant(1), exps[1],
+                growthConstant(2), exps[2]);
+    }
+
     public static void main(String[] args) {
         Integer[] items = new Integer[]{3, 2, 10, 15, 9, 4, 0};
 
         SelectionSort sorter = new SelectionSort();
-        sorter.sort(items, false);
-
-        System.out.printf("[sorted] items: %s\n", Arrays.toString(items));
-        sorter.analyze();
-
-        items = new Integer[]{3, 2, 10, 15, 9, 4, 0, 22, 19, -1, 10, 31, 22};
-        sorter.sort(items, false);
-        System.out.printf("[sorted] items: %s\n", Arrays.toString(items));
-        sorter.analyze();
-
         items = new Integer[]{3, 2, 10, 15, 9, 4, -2, 0, 102, -12, 88, 50,
                 22, 19, -1, 10, 31, 7, 22};
-        sorter.sort(items, false);
+        sorter.sort(items, 1);
         System.out.printf("[sorted] items: %s\n", Arrays.toString(items));
-        sorter.analyze();
-
-        items = sample(100);
-        sorter.sort(items, false);
         sorter.analyze();
 
         items = sample(200);
-        sorter.sort(items, false);
+        sorter.sort(items, 1);
         sorter.analyze();
-        sorter.sort(items, true);
+        sorter.resort();
         sorter.analyze();
 
         items = sample(500);
-        sorter.sort(items, false);
+        sorter.sort(items, 1);
         sorter.analyze();
 
-        sorter.sort(items, true);
+
+        items = sample(1000);
+        sorter.sort(items, 1);
+        sorter.analyze();
+
+        sorter.resort();
+        sorter.analyze();
+
+        // best case
+        int N = 500;
+        items = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            items[i] = i;
+        }
+        sorter.sort(items, 0);
+        sorter.analyze();
+
+
+        // worst case
+        items = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            items[N-1-i] = i;
+        }
+        sorter.sort(items, 2);
         sorter.analyze();
     }
 

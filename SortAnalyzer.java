@@ -18,7 +18,7 @@ public class SortAnalyzer {
         exchanges++;
     }
 
-    public void compares() {
+    public void compare() {
         compares++;
     }
 

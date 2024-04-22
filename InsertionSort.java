@@ -19,7 +19,7 @@ public class InsertionSort {
         for (int i = 1; i < items.length; i++) {
             int dest = i;
             for (int j = i - 1; j >= 0; j--) {
-                analyzer.compares();
+                analyzer.compare();
                 if (items[i].compareTo(items[j]) >= 0) {
                     break;
                 } else {
@@ -65,11 +65,11 @@ public class InsertionSort {
         return out;
     }
 
-    public float relativeChange(int type) {
+    public float growthConstant(int statType) {
         float r;
         int N = items.length;
         int denom = inputType == 0 ? N : N*N;
-        switch (type) {
+        switch (statType) {
             case 1:
                 r = (float) analyzer.getCompares() / denom;
                 break;
@@ -90,15 +90,16 @@ public class InsertionSort {
         String caseName;
         switch (inputType) {
             case 0:
-                caseName = "[BEST] ~ N";
+                caseName = "[BEST] Compares = N - 1 | Exchanges = 0";
                 exps  = new String[]{"1", "1", "0"};
                 break;
             case 2:
-                caseName = "[WORST] ~ N^2";
+                caseName = "[WORST] Compares / N^2 | Exchanges / N^2";
                 exps  = new String[]{"1", "1/2", "1/2"};
                 break;
+            // Todo: check partially sorted array
             default: // random
-                caseName = "[RAND] ~ N^2";
+                caseName = "[RAND] Compares / N^2 | Exchanges / N^2";
                 exps  = new String[]{"1/2", "1/4", "1/4"};
                 break;
         }
@@ -109,9 +110,9 @@ public class InsertionSort {
                         "\tcomp.: %f [Exp. %s]" +
                         "\texch.: %f [Exp. %s]\n",
                 N, N*N, analyzer.ops(), caseName,
-                relativeChange(0), exps[0],
-                relativeChange(1), exps[1],
-                relativeChange(2), exps[2]);
+                growthConstant(0), exps[0],
+                growthConstant(1), exps[1],
+                growthConstant(2), exps[2]);
     }
 
     public static void main(String[] args) {
