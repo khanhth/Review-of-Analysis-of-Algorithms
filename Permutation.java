@@ -11,7 +11,7 @@ public class Permutation {
         RandomizedQueue<String> q = new RandomizedQueue<>();
 
         StringBuilder word = new StringBuilder();
-        while (StdIn.hasNextChar()) {
+        while (!StdIn.isEmpty()) {
             char c = StdIn.readChar();
 //            StdOut.print(c);
 
