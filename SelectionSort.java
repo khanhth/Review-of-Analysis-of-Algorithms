@@ -1,3 +1,5 @@
+import edu.princeton.cs.algs4.StdRandom;
+
 import java.util.Arrays;
 
 public class SelectionSort {
@@ -7,8 +9,11 @@ public class SelectionSort {
     }
 
     public void analyze() {
-        if (analyzer.N == 0) System.out.println("Sorting's not been started.");
-        else System.out.printf("[*] N: %d, N^2: %d - ops: %d\n", analyzer.N, analyzer.N*analyzer.N, analyzer.ops);
+        int n = analyzer.N;
+        if (n == 0) System.out.println("Sorting's not been started.");
+        else System.out.printf("[-] N: %d, N^2: %d, ops: %d\n" +
+                        "\t\trelative change: %f [expected ~1/2]\n", n, n*n,
+                analyzer.ops, (float) (n*n - analyzer.ops) / (n*n));
     }
 
     public Analyzer analyzer;
@@ -60,9 +65,31 @@ public class SelectionSort {
         System.out.printf("[sorted] items: %s\n", Arrays.toString(items));
         sorter.analyze();
 
-        items = new Integer[]{3, 2, 10, 15, 9, 4, -2, 0, 102, -12, 88, 50, 22, 19, -1, 10, 31, 7, 22};
+        items = new Integer[]{3, 2, 10, 15, 9, 4, -2, 0, 102, -12, 88, 50,
+                22, 19, -1, 10, 31, 7, 22};
         sorter.sort(items);
         System.out.printf("[sorted] items: %s\n", Arrays.toString(items));
         sorter.analyze();
+
+        items = sample(100);
+        sorter.sort(items);
+        sorter.analyze();
+
+        items = sample(200);
+        sorter.sort(items);
+        sorter.analyze();
+
+        items = sample(500);
+        sorter.sort(items);
+        sorter.analyze();
+    }
+
+    private static Integer[] sample(int n) {
+        Integer[] out = new Integer[n];
+        for (int i = 0; i < n; i++) {
+            out[i] = StdRandom.uniformInt(-1000, 1000);
+        }
+
+        return out;
     }
 }
