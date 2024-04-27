@@ -59,7 +59,7 @@ public class SelectionSort {
                 r = (float) analyzer.getExchanges() / N;
                 break;
             default: // total
-                r = (float) analyzer.ops() / (N*N);
+                r = (float) analyzer.total() / (N*N);
                 break;
         }
 
@@ -90,7 +90,7 @@ public class SelectionSort {
                         "\t%s\n\tTotal: %f [Exp. %s]" +
                         "\tcomp.: %f [Exp. %s]" +
                         "\texch.: %f [Exp. %s]\n\n",
-                N, N*N, analyzer.ops(), caseName,
+                N, N*N, analyzer.total(), caseName,
                 growthConstant(0), exps[0],
                 growthConstant(1), exps[1],
                 growthConstant(2), exps[2]);

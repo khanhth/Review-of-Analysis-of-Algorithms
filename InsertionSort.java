@@ -77,7 +77,7 @@ public class InsertionSort {
                 r = (float) analyzer.getExchanges() / denom;
                 break;
             default:
-                r = (float) analyzer.ops() / denom;
+                r = (float) analyzer.total() / denom;
                 break;
         }
 
@@ -109,7 +109,7 @@ public class InsertionSort {
                         "\t%s\n\tTotal: %f [Exp. %s]" +
                         "\tcomp.: %f [Exp. %s]" +
                         "\texch.: %f [Exp. %s]\n",
-                N, N*N, analyzer.ops(), caseName,
+                N, N*N, analyzer.total(), caseName,
                 growthConstant(0), exps[0],
                 growthConstant(1), exps[1],
                 growthConstant(2), exps[2]);
