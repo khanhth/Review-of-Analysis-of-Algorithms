@@ -42,6 +42,6 @@ ${\dagger}$ Exact number depending on implementation.
 | Average case | $\approx 6N\lg\ N$           | $\approx N\lg\ N$   |
 | Worst case   | $\approx 5N\lg\ N$           | $\approx N\lg\ N/2$ |
 
-${\dagger}$ $lg$ denotes logarithm base 2.
+${\dagger}$ $\lg$ denotes logarithm base 2.
 
 *Analysis*. Merge sort uses at most $N\lg\ N$ compares and $6N\lg\ N$ array accesses.
