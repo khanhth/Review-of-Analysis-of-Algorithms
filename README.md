@@ -36,12 +36,12 @@ ${\dagger}$ Exact number depending on implementation.
 
 *Imperical results.*
 
-| Input Model  | No. of Array Accesses         | No. of Compares     |
-|--------------|-------------------------------|---------------------|
-| Best case    | $\approx 5*N*lg(N)^{\dagger}$ | $\approx N*lg(N)/2$ |
-| Average case | $\approx 6*N*lg(N)$           | $\approx N*lg(N)$   |
-| Worst case   | $\approx 5*N*lg(N)$           | $\approx N*lg(N)/2$ |
+| Input Model  | No. of Array Accesses        | No. of Compares     |
+|--------------|------------------------------|---------------------|
+| Best case    | $\approx 5N\lg\ N^{\dagger}$ | $\approx N\lg\ N/2$ |
+| Average case | $\approx 6N\lg\ N$           | $\approx N\lg\ N$   |
+| Worst case   | $\approx 5N\lg\ N$           | $\approx N\lg\ N/2$ |
 
 ${\dagger}$ $lg$ denotes logarithm base 2.
 
-*Analysis*. Merge sort uses at most $N*lg(N)$ compares and $6*N*lg(N)$ array accesses.
+*Analysis*. Merge sort uses at most $N\lg\ N$ compares and $6N\lg\ N$ array accesses.
