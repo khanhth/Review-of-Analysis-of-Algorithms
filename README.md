@@ -2,6 +2,7 @@
 *Cost model.* Number of array accesses.
 
 *Empirical result.*
+
 **Warning**: Numbers in the table below is not updated and may be inaccurate.
 
 | Algorithm                | Initialization  | Union         | Find |
