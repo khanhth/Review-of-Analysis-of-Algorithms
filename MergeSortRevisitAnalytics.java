@@ -102,7 +102,7 @@ public class MergeSortRevisitAnalytics {
         analyze();
 
         // worst case
-        int N = 200;
+        int N = 500;
         items = new Integer[N];
         for (int i = 0; i < N; i++) {
             items[N-1-i] = i;
@@ -110,7 +110,7 @@ public class MergeSortRevisitAnalytics {
         sort(sorter, items, 2);
         analyze();
 
-        items = sample(200);
+        items = sample(500);
         sort(sorter, items);
         analyze();
 
