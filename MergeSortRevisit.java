@@ -1,10 +1,10 @@
 import java.util.Arrays;
 
-public class MergeSort2024 {
+public class MergeSortRevisit {
 
     private SortAnalyzer analyzer;
 
-    public MergeSort2024(SortAnalyzer analyzer) {
+    public MergeSortRevisit(SortAnalyzer analyzer) {
         this.analyzer = analyzer;
     }
 
@@ -71,7 +71,7 @@ public class MergeSort2024 {
         float NLogN = (float) (N * Math.log(N)/Math.log(2));
 
         SortAnalyzer analyzer = new SortAnalyzer();
-        MergeSort2024 mergeSort = new MergeSort2024(analyzer);
+        MergeSortRevisit mergeSort = new MergeSortRevisit(analyzer);
         mergeSort.sort(items);
         System.out.printf("[stat] N: %d, N*lg(N): %f, 6*N*lg(N): %f, " +
                 "compares: %d, accesses: %d\n", N, NLogN, 6*NLogN,

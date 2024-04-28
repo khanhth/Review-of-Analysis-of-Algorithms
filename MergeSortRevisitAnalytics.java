@@ -2,23 +2,23 @@ import edu.princeton.cs.algs4.StdRandom;
 
 import java.util.Arrays;
 
-public class MergeSortAnalytics {
+public class MergeSortRevisitAnalytics {
     private static Comparable[] items;
-    private static MergeSort2024 sorter;
+    private static MergeSortRevisit sorter;
 
     private static boolean newSort;
     private static boolean sorted;
     private static SortAnalyzer analyzer;
     private static int inputType;
 
-    public static void sort(MergeSort2024 ms, Comparable[] items, int inType) {
+    public static void sort(MergeSortRevisit ms, Comparable[] items, int inType) {
         newSort = true;
         inputType = inType;
         sorter = ms;
         sorter.sort(items);
         sorted = true;
     }
-    public static void sort(MergeSort2024 ms, Comparable[] items) { // random input
+    public static void sort(MergeSortRevisit ms, Comparable[] items) { // random input
         sort(ms, items, 1);
     }
 
@@ -94,7 +94,7 @@ public class MergeSortAnalytics {
 
     public static void main(String[] args) {
         analyzer = new SortAnalyzer();
-        MergeSort2024 sorter = new MergeSort2024(analyzer);
+        MergeSortRevisit sorter = new MergeSortRevisit(analyzer);
         items = new Integer[]{3, 2, 10, 15, 9, 4, -2, 0, 102, -12, 88, 50,
                 22, 19, -1, 10, 31, 7, 22};
         sort(sorter, items);
