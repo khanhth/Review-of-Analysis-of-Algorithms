@@ -67,12 +67,14 @@ public class MergeSortRevisit {
 
     public static void main(String[] args) {
         Integer[] items = new Integer[]{23, 2, 4, -1, 0, 10, 9, 15, -3, 19, 11, 22, 31, -6, 19, 13, -2};
-        int N = items.length;
-        float NLogN = (float) (N * Math.log(N)/Math.log(2));
 
         SortAnalyzer analyzer = new SortAnalyzer();
         MergeSortRevisit mergeSort = new MergeSortRevisit(analyzer);
         mergeSort.sort(items);
+
+        // Print some analytics
+        int N = items.length;
+        float NLogN = (float) (N * Math.log(N)/Math.log(2));
         System.out.printf("[stat] N: %d, N*lg(N): %f, 6*N*lg(N): %f, " +
                 "compares: %d, accesses: %d\n", N, NLogN, 6*NLogN,
                 analyzer.getCompares(), analyzer.getAccesses());
