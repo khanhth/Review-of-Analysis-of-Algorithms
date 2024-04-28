@@ -1,3 +1,4 @@
+//  [TODO] Implement analyzer for this class
 public class QuickUnion {
   private int[] id;
 
@@ -5,7 +6,7 @@ public class QuickUnion {
     System.out.println("Number of vertexes: " + N);
 
     id = new int[N];
-    for (int i = 0; i < N; i++) id[i] = i; 
+    for (int i = 0; i < N; i++) id[i] = i;
   }
 
 //  public int root(int p) {
@@ -56,7 +57,7 @@ public class QuickUnion {
 
     i = 3;
     map.connected(i, j);
-  
+
     i = 5;
     map.connected(i, j);
 

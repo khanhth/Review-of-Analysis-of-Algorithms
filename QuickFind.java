@@ -1,3 +1,4 @@
+//  [TODO] Implement analyzer for this class
 public class QuickFind {
   private int[] id;
 
@@ -5,7 +6,7 @@ public class QuickFind {
     System.out.println("[QuickFind] Number of vertexes: " + N);
 
     id = new int[N];
-    for (int i = 0; i < N; i++) id[i] = i; 
+    for (int i = 0; i < N; i++) id[i] = i;
   }
 
   public void union(int p, int q) {
@@ -19,7 +20,7 @@ public class QuickFind {
   }
 
   public boolean connected(int p, int q) {
-    
+
     boolean out = id[p] == id[q];
     System.out.printf("[connected] Are %d and %d connected? %b\n", p, q, out);
 
@@ -48,7 +49,7 @@ public class QuickFind {
 
     i = 3;
     map.connected(i, j);
-  
+
     i = 5;
     map.connected(i, j);
 

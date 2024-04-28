@@ -3,7 +3,7 @@
 
 *Empirical result.*
 
-**Warning**: Numbers in the table below is not updated and may be inaccurate.
+**Warning**: Numbers in the specific table below may be inaccurate and need to be updated, see [TODO]s in the corresponding Java classes.
 
 | Algorithm                | Initialization  | Union         | Find |
 |--------------------------|-----------------|---------------|------|
