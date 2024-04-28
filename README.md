@@ -1,7 +1,8 @@
 ## Quick-find vs. Quick-union
-*Imperical results.* Number of operations counting only number of array accesses but not other operations such as counter variable initializations & assignments in loops.
+*Cost model.* Number of array accesses.
 
-**Warning**: The table below needs update to use the $\sim$ notation.
+*Empirical result.*
+**Warning**: Numbers in the table below is not updated and may be inaccurate.
 
 | Algorithm                | Initialization  | Union         | Find |
 |--------------------------|-----------------|---------------|------|
@@ -10,13 +11,13 @@
 
 ${\dagger}$ Including cost of finding roots.
 
-*Analysis.* Quick-find, under all circumstances, is effective at *Find* method, but it doesn't work well with *Union*. Quick-union on other hand **CAN** potentially be effective at *Union*, but it **MAY** not be working well with *Find*.
+*Analysis.* Quick-find, under all circumstances, is effective at *Find* method, but it doesn't perform well with *Union*. Quick-union on other hand **CAN** potentially be effective at *Union*, but it **MAY** not be working well with *Find*.
 However, in worst case, Quick-union performs worse than Quick-find even on *Union*.
 
 ## Elementary Sorts
 *Cost model.* Number of array accesses & exchanges (i.e. swaps).
 
-*Imperical results.*
+*Empirical result.*
 
 | Algorithm          | No. of Array Accesses | No. of Exchanges       |
 |--------------------|-----------------------|------------------------|
@@ -34,7 +35,7 @@ ${\dagger}$ Exact number depending on implementation.
 ## Merge Sort
 *Cost model.* Number of array accesses & compares.
 
-*Imperical results.*
+*Empirical result.*
 
 | Input Model  | No. of Array Accesses        | No. of Compares     |
 |--------------|------------------------------|---------------------|
