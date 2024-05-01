@@ -16,12 +16,12 @@ public class BruteCollinearPoints {
 
         for (int i = 0; i < len; i++) {
             Point point = points[i];
-            for (int j = 0; j < len; j++) {
-                if (i == j) continue;
-                for (int k = 0; k < len; k++) {
-                    if (k == i || k == j) continue;
-                    for (int l = 0; l < len; l++) {
-                        if (l == i || l == j || l == k) continue;
+            for (int j = 0; j < len && i != j; j++) {
+//                if (i == j) continue;
+                for (int k = 0; k < len && k != i && k != j; k++) {
+//                    if (k == i || k == j) continue;
+                    for (int l = 0; l < len && l != i && l != j && l != k; l++) {
+//                        if (l == i || l == j || l == k) continue;
                         if (point.slopeTo(points[j]) == point.slopeTo(points[k]) &&
                                 point.slopeTo(points[k]) == point.slopeTo(points[l])) {
                             addSegment(i, j, k, l);
@@ -85,10 +85,6 @@ public class BruteCollinearPoints {
         for (int h = 0; h < numberOfSegments; h++) {
             Point startPoint = segmentStartPoints[h];
             Point endPoint = segmentEndPoints[h];
-            if (startPoint == null) {
-                break;
-            }
-
             if (startPoint.compareTo(minPoint) == 0 && endPoint.compareTo(maxPoint) == 0) {
 //                StdOut.printf("\t[SKIP]..........\n\t\tsegmentStartPoints: %s" +
 //                                "\n\t\tsegmentEndPoints: %s\n",
