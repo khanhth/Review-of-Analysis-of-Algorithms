@@ -2,6 +2,7 @@
 *.swp
 *.class
 .idea
+.vscode
 *.iml
 out/
 algs4.jar
